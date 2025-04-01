@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ju8arulvecj0"]
+
+[ext_resource type="FontFile" uid="uid://o1hbh0xpiwd4" path="res://Font/ARCADECLASSIC.TTF" id="1_oe8cl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2u5j"]
+
+[resource]
+default_font = ExtResource("1_oe8cl")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_c2u5j")

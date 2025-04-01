@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://burp6s73u75wr"]
+
+[ext_resource type="Texture2D" uid="uid://qr4jfsfcie4i" path="res://EnvironmentSprite/Floor.png" id="1_oj3tl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgngl"]
+albedo_texture = ExtResource("1_oj3tl")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wd3ws"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qn07e"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Floor" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cgngl")
+mesh = SubResource("PlaneMesh_wd3ws")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_qn07e")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu60hm2nry0pd"]
+
+[ext_resource type="Texture2D" uid="uid://cmuepvflh48tl" path="res://EnvironmentSprite/Roof.png" id="1_3tvjk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqe8m"]
+albedo_texture = ExtResource("1_3tvjk")
+
+[sub_resource type="BoxMesh" id="BoxMesh_cqucl"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lu5km"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Roof" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.00707107, -7.07107, 0, 0.00707107, 7.07107, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_dqe8m")
+mesh = SubResource("BoxMesh_cqucl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_lu5km")

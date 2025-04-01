@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://deb8un74hhdrp"]
+
+[ext_resource type="Texture2D" uid="uid://cf2djcq6xjudc" path="res://Fireball/pixels_00.png" id="1_b5gq1"]
+[ext_resource type="Texture2D" uid="uid://byeujymgna1vx" path="res://Fireball/pixels_01.png" id="2_02h0j"]
+[ext_resource type="Texture2D" uid="uid://bg4oycdwm8ekk" path="res://Fireball/pixels_02.png" id="3_2qs3d"]
+[ext_resource type="Texture2D" uid="uid://dc1fu3jtxdu5n" path="res://Fireball/pixels_03.png" id="4_gq0er"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6hm8t"]
+radius = 0.124258
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8utvf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b5gq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_02h0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2qs3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gq0er")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_6hm8t")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_8utvf")
+animation = &"Default"
+frame_progress = 0.622245

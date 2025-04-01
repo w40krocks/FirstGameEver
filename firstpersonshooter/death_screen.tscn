@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://d25pus4qfwgg8"]
+
+[ext_resource type="Script" uid="uid://c3gsfxle6cvb8" path="res://death_screen.gd" id="1_if853"]
+
+[node name="Death Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_if853")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
