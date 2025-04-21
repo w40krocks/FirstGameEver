@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://bq5qnctgtsaye"]
+
+[ext_resource type="PackedScene" uid="uid://57cttujidpgj" path="res://Character/character.tscn" id="1_4otma"]
+[ext_resource type="Script" uid="uid://baw1sji2gm6b1" path="res://Character/Player/Player.gd" id="2_m6j64"]
+[ext_resource type="Script" uid="uid://bxip41bel1ip3" path="res://Character/Player/Camera.gd" id="3_ep33s"]
+[ext_resource type="PackedScene" uid="uid://coj00bg6vp6y5" path="res://Weapons/weapon.tscn" id="4_dagc5"]
+[ext_resource type="PackedScene" uid="uid://c2n4d0e6l53de" path="res://UI/Pause/pause_menu.tscn" id="4_iytxy"]
+[ext_resource type="Texture2D" uid="uid://cl8t3n8lqq5yo" path="res://Character/Player/FaceV2Reversed.png" id="5_86gxa"]
+[ext_resource type="Script" uid="uid://sbxnafvi6rtk" path="res://Character/Player/Face.gd" id="6_5k01n"]
+[ext_resource type="PackedScene" uid="uid://dwslofv0ibnct" path="res://UI/Death/DeathScreen.tscn" id="8_5k01n"]
+
+[node name="Character" instance=ExtResource("1_4otma")]
+script = ExtResource("2_m6j64")
+
+[node name="Head" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("3_ep33s")
+
+[node name="Camera3D" type="Camera3D" parent="Head" index="0"]
+
+[node name="Weapon" parent="Head/Camera3D" index="0" instance=ExtResource("4_dagc5")]
+
+[node name="Face" type="Sprite2D" parent="Head/Camera3D" index="1"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("5_86gxa")
+centered = false
+hframes = 6
+vframes = 11
+frame = 60
+script = ExtResource("6_5k01n")
+
+[node name="FaceSwapTimer" type="Timer" parent="Head/Camera3D/Face" index="0"]
+autostart = true
+
+[node name="PauseMenu" parent="." index="3" instance=ExtResource("4_iytxy")]
+visible = false
+
+[node name="DeathScreen" parent="." index="4" instance=ExtResource("8_5k01n")]
+visible = false
+
+[connection signal="timeout" from="Head/Camera3D/Face/FaceSwapTimer" to="Head/Camera3D/Face" method="_SwapFaceXcoord"]

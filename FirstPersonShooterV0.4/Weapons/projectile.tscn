@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbo1xekx6gm75"]
+
+[ext_resource type="Script" uid="uid://b703palkvkinn" path="res://projectile.gd" id="1_twgok"]
+[ext_resource type="Texture2D" uid="uid://bxk4l8nrom6h1" path="res://Weapons/Fireball.png" id="2_ody5c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_24puh"]
+
+[node name="Projectile" type="Area3D"]
+script = ExtResource("1_twgok")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_ody5c")
+hframes = 4
+frame = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_24puh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_OnBodyContact"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

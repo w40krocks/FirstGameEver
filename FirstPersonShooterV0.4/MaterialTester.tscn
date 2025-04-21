@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxv68slk7mbis"]
+
+[ext_resource type="Texture2D" uid="uid://dbgqeymjgik6k" path="res://World/Environment/Wall/BrickWall.png" id="1_i53pt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3e4pg"]
+albedo_texture = ExtResource("1_i53pt")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_wy60q"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3e4pg")
+mesh = SubResource("BoxMesh_wy60q")

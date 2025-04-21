@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bs5dfi6pogq8p"]
+
+[resource]
+albedo_texture = null
+uv1_triplanar_sharpness = 1e-05
+texture_filter = 0

@@ -1,0 +1,153 @@
+[gd_scene load_steps=16 format=3 uid="uid://coj00bg6vp6y5"]
+
+[ext_resource type="Script" uid="uid://b4syr37a3c7j0" path="res://Weapons/Weapon.gd" id="1_g6cf3"]
+[ext_resource type="Texture2D" uid="uid://c80able0tnexv" path="res://Weapons/Unhanded/UnhandedV2SpriteSheet.png" id="2_iakxr"]
+[ext_resource type="Texture2D" uid="uid://kymtr76aq60k" path="res://Weapons/Pistol/PistolV2SpriteSheet.png" id="3_qm7ci"]
+[ext_resource type="Texture2D" uid="uid://c38yf5jk2fs75" path="res://Weapons/Shotgun/ShotgunV2SpriteSheet.png" id="4_2rxqg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6cf3"]
+atlas = ExtResource("2_iakxr")
+region = Rect2(30, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iakxr"]
+atlas = ExtResource("2_iakxr")
+region = Rect2(0, 0, 30, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qm7ci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6cf3")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iakxr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rxqg"]
+atlas = ExtResource("3_qm7ci")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa34q"]
+atlas = ExtResource("3_qm7ci")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp8ke"]
+atlas = ExtResource("3_qm7ci")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8fpg8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rxqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa34q")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp8ke")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys5cw"]
+atlas = ExtResource("4_2rxqg")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f62qm"]
+atlas = ExtResource("4_2rxqg")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo7oh"]
+atlas = ExtResource("4_2rxqg")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ym5g2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys5cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f62qm")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wo7oh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Weapon" type="RayCast3D"]
+target_position = Vector3(0, 0, -1)
+collide_with_areas = true
+script = ExtResource("1_g6cf3")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(10, 10)
+
+[node name="Unhanded" type="AnimatedSprite2D" parent="Control"]
+sprite_frames = SubResource("SpriteFrames_qm7ci")
+animation = &"Idle"
+offset = Vector2(0, -20)
+
+[node name="Pistol" type="AnimatedSprite2D" parent="Control"]
+sprite_frames = SubResource("SpriteFrames_8fpg8")
+animation = &"Idle"
+offset = Vector2(0, -7.5)
+
+[node name="Shotgun" type="AnimatedSprite2D" parent="Control"]
+sprite_frames = SubResource("SpriteFrames_ym5g2")
+animation = &"Idle"
+offset = Vector2(0, -7.5)
+
+[node name="WeaponCooldown" type="Timer" parent="."]
+
+[node name="Ammo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Ammo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(4, 4)
+pivot_offset = Vector2(0, 17)
+
+[connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7df3jx7d5apd"]
+
+[ext_resource type="PackedScene" uid="uid://57cttujidpgj" path="res://Character/character.tscn" id="1_pm667"]
+[ext_resource type="Script" uid="uid://dups3t0qvbbqi" path="res://Character/Enemy/enemy1.gd" id="2_bq4yx"]
+[ext_resource type="Texture2D" uid="uid://dbgqeymjgik6k" path="res://World/Environment/Wall/BrickWall.png" id="3_bq4yx"]
+[ext_resource type="Texture2D" uid="uid://kn1pca1aae5l" path="res://Character/Enemy/Spotted!.png" id="3_pvlxk"]
+[ext_resource type="Texture2D" uid="uid://ddlfms4diibny" path="res://Character/Enemy/SpriteSheet1.png" id="4_2qdt8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8y6t"]
+albedo_texture = ExtResource("3_bq4yx")
+
+[node name="Enemy" instance=ExtResource("1_pm667")]
+script = ExtResource("2_bq4yx")
+
+[node name="MeshInstance3D" parent="." index="0"]
+visible = false
+material_override = SubResource("StandardMaterial3D_h8y6t")
+
+[node name="Spotted" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.75, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("3_pvlxk")
+
+[node name="ObstructionCheck" type="RayCast3D" parent="." index="3"]
+target_position = Vector3(0, 0, 0)
+
+[node name="Body" type="Sprite3D" parent="." index="4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("4_2qdt8")
+hframes = 8
+vframes = 3
+
+[node name="ProjectileSpawnLocation" type="Node3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.24)
+
+[node name="DetectionTimer" type="Timer" parent="." index="6"]
+wait_time = 2.0
+
+[node name="AttackCooldown" type="Timer" parent="." index="7"]
+
+[connection signal="timeout" from="DetectionTimer" to="." method="_DetectionTimerOver"]
+[connection signal="timeout" from="DetectionTimer" to="." method="_on_detection_timer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_Attack"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

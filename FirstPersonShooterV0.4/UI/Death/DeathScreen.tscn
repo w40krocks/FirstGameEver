@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwslofv0ibnct"]
+
+[ext_resource type="Script" uid="uid://bfdwk0iyhmxo1" path="res://UI/Death/DeathMenu.gd" id="1_x8cxu"]
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(6, 6)
+script = ExtResource("1_x8cxu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="Container/VBoxContainer/Restart" to="Container" method="_on_restart_pressed"]
+[connection signal="pressed" from="Container/VBoxContainer/Quit" to="Container" method="_on_quit_pressed"]

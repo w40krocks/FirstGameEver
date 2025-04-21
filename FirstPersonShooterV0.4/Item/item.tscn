@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxovf857nw7w"]
+
+[ext_resource type="Script" uid="uid://c8d4voympdqou" path="res://Item/Item.gd" id="1_gcssv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h0d2h"]
+
+[node name="Item" type="Area3D"]
+script = ExtResource("1_gcssv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_h0d2h")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture_filter = 0
+
+[connection signal="body_entered" from="." to="." method="_bodyEntered"]
