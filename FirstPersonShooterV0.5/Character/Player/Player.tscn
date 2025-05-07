@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceec225nkf225"]
+
+[ext_resource type="PackedScene" uid="uid://dthf1w0ueidsk" path="res://Character/Character.tscn" id="1_4otma"]
+[ext_resource type="Script" uid="uid://bhy1cgh57tdqp" path="res://Character/Player/player.gd" id="2_m6j64"]
+[ext_resource type="Script" uid="uid://un7m4s0e2lng" path="res://Character/Player/CameraMovement.gd" id="3_ep33s"]
+[ext_resource type="Script" uid="uid://cdbibsvn35svf" path="res://Character/Player/WeaponSelect.gd" id="4_dagc5"]
+[ext_resource type="PackedScene" uid="uid://g72ot0u31eeu" path="res://UI/UI.tscn" id="4_iytxy"]
+
+[node name="Player" instance=ExtResource("1_4otma")]
+script = ExtResource("2_m6j64")
+
+[node name="Head" type="Node3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" index="0"]
+script = ExtResource("3_ep33s")
+
+[node name="Weapon" type="Node3D" parent="Head/Camera3D" index="0"]
+script = ExtResource("4_dagc5")
+
+[node name="UI" parent="." index="2" instance=ExtResource("4_iytxy")]

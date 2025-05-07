@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://g6w18l67fabs"]
+
+[ext_resource type="PackedScene" uid="uid://3dwxg7ip3ljs" path="res://Weapons/Projectile/ProjectileWeapon.tscn" id="1_x5ku2"]
+[ext_resource type="Script" uid="uid://drckvf5iox5ko" path="res://Weapons/Projectile/Bazooka/Bazooka.gd" id="2_2pfc1"]
+[ext_resource type="PackedScene" uid="uid://bcmpp7qynyjfo" path="res://Weapons/Projectile/Bazooka/3DbazookaV1.blend" id="3_2pfc1"]
+
+[node name="Bazooka" instance=ExtResource("1_x5ku2")]
+script = ExtResource("2_2pfc1")
+
+[node name="WeaponView" parent="WeaponPos" index="0"]
+visible = false
+
+[node name="WeaponLight" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.102592, -1.05999)
+visible = false
+light_bake_mode = 2
+omni_range = 5.0
+
+[node name="Model" parent="." index="5" instance=ExtResource("3_2pfc1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.00950938, -0.237828, -0.511609)

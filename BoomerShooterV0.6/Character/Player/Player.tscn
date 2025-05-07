@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://ceec225nkf225"]
+
+[ext_resource type="PackedScene" uid="uid://dthf1w0ueidsk" path="res://Character/Character.tscn" id="1_4otma"]
+[ext_resource type="Script" uid="uid://bhy1cgh57tdqp" path="res://Character/Player/player.gd" id="2_m6j64"]
+[ext_resource type="Script" uid="uid://un7m4s0e2lng" path="res://Character/Player/CameraMovement.gd" id="3_ep33s"]
+[ext_resource type="PackedScene" uid="uid://h3i53wi5lm3c" path="res://Weapons/RayCast/Pistol/Pistol.tscn" id="4_dagc5"]
+[ext_resource type="PackedScene" uid="uid://g72ot0u31eeu" path="res://Character/Player/UI/UI.tscn" id="4_iytxy"]
+[ext_resource type="PackedScene" uid="uid://d0t66a12vbril" path="res://Weapons/RayCast/Shotgun/Shotgun.tscn" id="5_ve82l"]
+[ext_resource type="PackedScene" uid="uid://g6w18l67fabs" path="res://Weapons/Projectile/Bazooka/Bazooka.tscn" id="6_86gxa"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_86gxa"]
+
+[node name="Player" instance=ExtResource("1_4otma")]
+script = ExtResource("2_m6j64")
+
+[node name="Head" type="Node3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" index="0"]
+script = ExtResource("3_ep33s")
+
+[node name="Pistol" parent="Head/Camera3D" index="0" instance=ExtResource("4_dagc5")]
+visible = false
+
+[node name="Shotgun" parent="Head/Camera3D" index="1" instance=ExtResource("5_ve82l")]
+visible = false
+
+[node name="Bazooka" parent="Head/Camera3D" index="2" instance=ExtResource("6_86gxa")]
+visible = false
+
+[node name="UI" parent="." index="2" instance=ExtResource("4_iytxy")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+mesh = SubResource("CapsuleMesh_86gxa")

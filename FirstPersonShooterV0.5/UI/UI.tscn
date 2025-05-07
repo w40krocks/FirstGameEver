@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://g72ot0u31eeu"]
+
+[ext_resource type="Texture2D" uid="uid://5y2wajal4dik" path="res://UI/Container.png" id="1_q0uhn"]
+[ext_resource type="Texture2D" uid="uid://dgi1lrv67187o" path="res://Character/Player/FaceV3.png" id="2_q0uhn"]
+[ext_resource type="Script" uid="uid://cvah4cv0pjr0b" path="res://UI/FaceChoice.gd" id="3_q0uhn"]
+
+[node name="UI" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+
+[node name="Crosshair" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrosshairSprite" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("1_q0uhn")
+centered = false
+
+[node name="Face" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_q0uhn")
+centered = false
+hframes = 6
+vframes = 11
+frame = 60
+script = ExtResource("3_q0uhn")
+
+[node name="FaceXCooldown" type="Timer" parent="Face"]
+autostart = true
+
+[connection signal="timeout" from="Face/FaceXCooldown" to="Face" method="_FaceXCoordChange"]
